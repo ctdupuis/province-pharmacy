@@ -2,11 +2,10 @@ class UsersController < ApplicationController
   def login
       user = User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
-          user_reqs = Request.filter(user)
           session[:user_id] = user.id
           render json: { 
               logged_in: true,
-              user: user.as_json(only: [:id, :username, :f_name, :l_name, :admin]) }
+              user: user.as_json(only: [:id, :username, :admin]) }
       else user
           render json: { logged_in: false, error: "Invalid username/password combination"}
       end

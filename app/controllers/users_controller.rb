@@ -1,17 +1,27 @@
 class UsersController < ApplicationController
+    before_action :set_user, only: [:login, :update]
+
   def login
-      user = User.find_by(username: params[:username].upcase)
+    #   user = User.find_by(username: params[:username].upcase)
       if params[:password] == ENV['PASS']
         # binding.pry
-        render json: { first_login: true }
+        render json: { 
+            first_login: true,
+            user: @user.as_json(only: [:id, :username, :admin])
+        }
       elsif user && user.authenticate(params[:password])
         #   session[:user_id] = user.id
           render json: { 
               logged_in: true,
-              user: user.as_json(only: [:id, :username, :admin]) }
+              user: @user.as_json(only: [:id, :username, :admin]) 
+            }
       else user
           render json: { logged_in: false, error: "Invalid username/password combination"}
       end
+  end
+
+  def update
+    binding.pry
   end
 
   def logged_in
@@ -28,6 +38,12 @@ class UsersController < ApplicationController
   def logout
       session.clear
       render json: { logged_in: false }
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by(username: params[:username].upcase)
   end
 end
 

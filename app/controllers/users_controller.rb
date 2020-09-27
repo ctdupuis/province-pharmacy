@@ -2,15 +2,14 @@ class UsersController < ApplicationController
     before_action :set_user, only: [:login, :update]
 
   def login
-      # user = User.find_by(username: params[:username].upcase)
       if params[:password] == ENV['PASS'] && @user.authenticate(params[:password])
-        binding.pry
+        session[:user_id] = @user.id
         render json: { 
             first_login: true,
             user: @user.as_json(only: [:id, :username, :admin])
         }
       elsif @user && @user.authenticate(params[:password])
-          # session[:user_id] = @user.id
+          session[:user_id] = @user.id
           render json: { 
               logged_in: true,
               user: @user.as_json(only: [:id, :username, :admin]) 
@@ -21,12 +20,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @user.update_attribute(:password, params[:password])
+    @user.update_attribute(:password, params[:password])
     render json: { 
-              logged_in: true,
-              user: @user.as_json(only: [:id, :username, :admin]) 
-            }
-    binding.pry
+      logged_in: true,
+      user: @user.as_json(only: [:id, :username, :admin]) 
+    }
   end
 
   def logged_in
@@ -41,8 +39,8 @@ class UsersController < ApplicationController
   end
 
   def logout
-      session.clear
-      render json: { logged_in: false }
+    session.clear
+    render json: { logged_in: false }
   end
 
   private

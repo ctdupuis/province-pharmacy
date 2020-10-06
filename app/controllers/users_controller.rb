@@ -6,13 +6,13 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         render json: { 
             first_login: true,
-            user: @user.as_json(only: [:id, :username, :admin])
+            user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name)
         }
       elsif @user && @user.authenticate(params[:password])
           session[:user_id] = @user.id
           render json: { 
               logged_in: true,
-              user: @user.as_json(only: [:id, :username, :admin]) 
+              user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name]) 
           }
       else
           render json: { logged_in: false, error: "Invalid username/password combination"}
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user.update_attribute(:password, params[:password])
     render json: { 
       logged_in: true,
-      user: @user.as_json(only: [:id, :username, :admin]) 
+      user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name]) 
     }
   end
 

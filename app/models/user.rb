@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+    has_many :posts
     before_save :username_to_caps
     before_save :capitalize_first_name    
     before_save :capitalize_last_name

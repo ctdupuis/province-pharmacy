@@ -17,6 +17,8 @@ users = [
 
 # { username: 'tk', password: ENV['PASS'], first_name: 'Rollentrea', last_name: 'Kree'}
 # { username: 'cbs', password: ENV['PASS'], first_name: 'Cicely', last_name: 'Scarlet'}
+#  { username: 't', password: ENV['PASS'], first_name: 'Taylor', last_name: 'IDFK'}
 users.each{ |user| User.create(user) }
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
+Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2)

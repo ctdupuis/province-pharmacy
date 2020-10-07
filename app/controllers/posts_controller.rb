@@ -8,15 +8,21 @@ class PostsController < ApplicationController
   def create
     if @current_user
       post = Post.create(content: params[:content], user_id: @current_user.id)
-      render json: { 
-        'post': post,
-        created: true
-      }
+      if post.save
+        render json: { 
+          'post': post,
+          created: true
+        }
+      else
+        errors = Post.errors.full_messages.map
+        render json: { 
+          'error': errors,
+          created: false
+        }
+      end
     else
-      errors = Post.errors.full_messages.map
-      render json: { 
-        'error': errors,
-        created: false
+      render json: {
+        'error': 'Must be logged in'
       }
     end
   end

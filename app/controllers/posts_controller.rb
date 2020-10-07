@@ -8,10 +8,16 @@ class PostsController < ApplicationController
   def create
     if @current_user
       post = Post.create(content: params[:content], user_id: @current_user.id)
-      render json: { 'post': post }
+      render json: { 
+        'post': post,
+        created: true
+      }
     else
       errors = Post.errors.full_messages.map
-      render json: { 'error': errors }
+      render json: { 
+        'error': errors,
+        created: false
+      }
     end
   end
 

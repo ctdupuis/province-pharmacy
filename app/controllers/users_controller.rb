@@ -6,7 +6,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         render json: { 
             first_login: true,
-            user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name)
+            user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name])
         }
       elsif @user && @user.authenticate(params[:password])
           session[:user_id] = @user.id

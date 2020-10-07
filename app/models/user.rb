@@ -5,7 +5,7 @@ class User < ApplicationRecord
     before_save :capitalize_first_name    
     before_save :capitalize_last_name
 
-    validates :username, length: { maximum: 3 }
+    validates :username, length: { maximum: 3 }, presence: true
 
     def as_json(options={})
         super(only: [:id, :username, :admin, :first_name, :last_name])

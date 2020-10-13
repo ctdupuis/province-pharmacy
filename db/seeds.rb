@@ -21,4 +21,4 @@ users = [
 users.each{ |user| User.create(user) }
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
-Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2)
+Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2

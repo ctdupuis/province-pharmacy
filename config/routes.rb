@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do 
+    resources :comments
+  end
+  
   post "/", to: "users#login"
   post "/update", to: "users#update"
   get '/logout', to: 'users#logout'

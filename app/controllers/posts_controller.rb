@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
 
   def index 
-    posts = Post.all
-    render json: { 'posts': posts }
+    posts = Post.all.order("created_at DESC")
+    render json: PostSerializer.new(posts).to_serialized_json
   end
 
   def create

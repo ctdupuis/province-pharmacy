@@ -9,11 +9,11 @@ class PostSerializer
         options = {
             include: {
                 comments: {
-                    methods: [:created, :updated],
+                    methods: [:created, :updated, :author],
                     except: [:created_at, :updated_at]
                 }
             },
-            methods: [:created, :updated],
+            methods: [:created, :updated, :author],
             except: [:created_at, :updated_at]
         }
         @post.to_json(options)

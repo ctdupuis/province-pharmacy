@@ -5,10 +5,14 @@ class Post < ApplicationRecord
     validates :content, presence: true
 
     def created
-        self.created_at.strftime("%a %m/%e/%S %l:%e %P %z")
+        self.created_at.strftime("%a %m/%e/%S %l:%e %P")
     end
 
     def updated
-        self.updated_at.strftime("%a %m/%e/%S %l:%e %p")
+        self.updated_at.strftime("%a %m/%e/%S %l:%e %P")
+    end
+
+    def author
+        User.find(self.user_id).username
     end
 end

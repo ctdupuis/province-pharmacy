@@ -11,4 +11,8 @@ class Comment < ApplicationRecord
     def updated
         self.updated_at.strftime("%a %m/%e/%S %l:%e %P")
     end
+
+    def author
+        User.find(self.user_id).username
+    end
 end

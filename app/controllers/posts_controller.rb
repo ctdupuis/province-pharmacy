@@ -7,12 +7,9 @@ class PostsController < ApplicationController
 
   def create
     if @current_user
-      post = Post.create(content: params[:content], user_id: @current_user.id)
-      if post.save
-        render json: { 
-          'post': post,
-          created: true
-        }
+      new_post = Post.create(content: params[:content], user_id: @current_user.id)
+      if new_post.save
+        render json: PostSerializer.new(new_post).to_serialized_json
       else
         errors = Post.errors.full_messages.map
         render json: { 

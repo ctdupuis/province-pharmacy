@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     def create
         comment = @post.comments.build(content: params[:content], user_id: params[:user_id])
         if comment.save
-            render json: comment
+            render json: comment, methods: [:created, :updated, :author]
         else
             errors = comment.errors.full_messages.map
             render json: { error: errors }

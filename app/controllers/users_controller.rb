@@ -19,6 +19,11 @@ class UsersController < ApplicationController
       end
   end
 
+  def contact_list
+    contact_list = User.all
+    render json: UserSerializer.new(contact_list).to_serialized_json
+  end
+
   def update
     @user.update_attribute(:password, params[:password])
     render json: { 

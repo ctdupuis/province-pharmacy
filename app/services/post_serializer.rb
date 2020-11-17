@@ -5,7 +5,6 @@ class PostSerializer
     end
 
     def to_serialized_json
-        time_format = "%a %m/%e/%S %l:%e %P"
         options = {
             include: {
                 comments: {

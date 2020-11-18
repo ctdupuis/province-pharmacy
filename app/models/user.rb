@@ -9,7 +9,7 @@ class User < ApplicationRecord
     validates :username, length: { maximum: 3 }, presence: true
 
     def as_json(options={})
-        super(only: [:id, :username, :admin, :first_name, :last_name])
+        super(only: [:id, :username, :admin, :first_name, :last_name, :email, :phone])
     end 
 
     private

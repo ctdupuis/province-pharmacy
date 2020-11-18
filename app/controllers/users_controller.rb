@@ -6,29 +6,49 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         render json: { 
             first_login: true,
-            user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name])
+            user: @user
         }
       elsif @user && @user.authenticate(params[:password])
           session[:user_id] = @user.id
           render json: { 
               logged_in: true,
-              user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name]) 
+              user: @user
           }
       else
-          render json: { logged_in: false, error: "Invalid username/password combination"}
+          render json: { 
+            logged_in: false, 
+            error: "Invalid username/password combination"
+          }
       end
+  end
+
+  def create
+    user = User.create(
+      username: params[:username],
+      password: params[:password],
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      phone: params[:phone],
+      email: params[:email]
+    )
+    if user.save
+      render json: user
+    else
+      errors = user.errors.full_messages.map
+      render json: { error: errors }
+    end
   end
 
   def contact_list
     contact_list = User.all
-    render json: UserSerializer.new(contact_list).to_serialized_json
+    render json: contact_list
   end
 
   def update
     @user.update_attribute(:password, params[:password])
     render json: { 
       logged_in: true,
-      user: @user.as_json(only: [:id, :username, :admin, :first_name, :last_name]) 
+      user: @user
     }
   end
 
@@ -53,5 +73,6 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by(username: params[:username].upcase)
   end
+
 end
 

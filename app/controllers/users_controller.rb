@@ -46,10 +46,10 @@ class UsersController < ApplicationController
 
   def update
     @user.update_attribute(:password, params[:password])
-    if params[:email]
+    if params[:email] && params[:email] != ""
       @user.update_attribute(:email, params[:email])
     end
-    if params[:phone]
+    if params[:phone] && params[:phone] != ""
       @user.update_attribute(:phone, params[:phone])
     end
     render json: { 

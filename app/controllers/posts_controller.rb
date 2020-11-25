@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
 
   def index 
-    posts = Post.all.order("created_at DESC")
-    render json: PostSerializer.new(posts).to_serialized_json
+    if @current_user.username == "DEM"
+      posts = Post.all.select{|p| p.user_id == @current_user.id}
+      render json: PostSerializer.new(posts).to_serialized_json
+    else
+      posts = Post.all.order("created_at DESC").select{|p| p.author != "DEM"}
+      render json: PostSerializer.new(posts).to_serialized_json
+    end
   end
 
   def create

@@ -2,7 +2,23 @@ class UsersController < ApplicationController
     before_action :set_user, only: [:login, :update]
 
   def login
-      if params[:password] == ENV['PASS'] && @user.authenticate(params[:password])
+      if params[:username] == "demo"
+        guest = User.find_by(username: "DEM")
+        if !guest
+          guest = User.create(
+            username: "DEM",
+            password: "demo",
+            first_name: "Demo",
+            last_name: "Account",
+            admin: true
+          ) 
+        end
+        session[:user_id] = guest.id
+        render json: {
+          logged_in: true,
+          user: guest
+        }
+      elsif params[:password] == ENV['PASS'] && @user.authenticate(params[:password])
         session[:user_id] = @user.id
         render json: { 
             first_login: true,

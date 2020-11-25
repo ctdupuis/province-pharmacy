@@ -56,8 +56,31 @@ class UsersController < ApplicationController
   end
 
   def contact_list
-    contact_list = User.all
-    render json: contact_list
+    # binding.pry
+    user = User.find(session[:user_id])
+    if user.username == "DEM"
+      fakes = []
+      10.times do 
+        name = Faker::Name.name
+        f_name = name.split.first
+        l_name = name.split.last
+        f_initial = name.split.first.split("").first
+        l_initial = name.split.last.split("").first
+        u_name = f_initial + l_initial
+        fake = User.new(
+          first_name: f_name,
+          last_name: l_name,
+          username: u_name,
+          phone: Faker::PhoneNumber.cell_phone,
+          email: Faker::Internet.safe_email(name: f_name)
+        )
+        fakes << fake
+      end
+      render json: fakes
+    else
+      contact_list = User.all
+      render json: contact_list
+    end
   end
 
   def update

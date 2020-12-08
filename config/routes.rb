@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :posts do 
     resources :comments
   end
-  
+  resources :schedules do 
+    resources :shifts
+  end
   post "/", to: "users#login"
   post "/update", to: "users#update"
   post "/users", to: "users#create"

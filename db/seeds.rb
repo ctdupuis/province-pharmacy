@@ -8,10 +8,27 @@ users = [
     { username: 'bcs', password: ENV['PASS'], first_name: 'Brittany', last_name: 'Sanders'}
 ]
 
+
+
+
 # { username: 'tk', password: ENV['PASS'], first_name: 'Rollentrea', last_name: 'Kree'}
-# { username: 'cbs', password: ENV['PASS'], first_name: 'Cicely', last_name: 'Scarlet'}
-#  { username: 't', password: ENV['PASS'], first_name: 'Lacey', last_name: 'IDFK'}
-users.each{ |user| User.create(user) }
+#  { username: 'lld', password: ENV['PASS'], first_name: 'Lacey', last_name: 'IDFK'}
+def make_schedule(user)
+    schedule = Schedule.create(user_id: user.id)
+    i = 1
+    while i < 6 do 
+        s = Shift.create(date: "12/#{i}", time: "9-5", schedule: schedule, user: user)
+        schedule.shifts << s
+        i += 1
+    end
+    schedule.save
+end
+
+users.each do |user|
+    u = User.create(user)
+    make_schedule(u)
+end
+
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
 Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2)

@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     has_many :posts
     has_many :comments, through: :posts
+    has_one :schedule
+    has_many :shifts, through: :schedules
     before_save :username_to_caps
     before_save :capitalize_first_name    
     before_save :capitalize_last_name

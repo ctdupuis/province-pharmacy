@@ -11,9 +11,10 @@ class UsersController < ApplicationController
             first_name: "Demo",
             last_name: "Account",
             admin: true
-          ) 
+            ) 
         end
         session[:user_id] = guest.id
+        generate_fakes
         render json: {
           logged_in: true,
           user: guest
@@ -56,27 +57,9 @@ class UsersController < ApplicationController
   end
 
   def contact_list
-    # binding.pry
     user = User.find(session[:user_id])
     if user.username == "DEM"
-      fakes = []
-      10.times do 
-        name = Faker::Name.name
-        f_name = name.split.first
-        l_name = name.split.last
-        f_initial = name.split.first.split("").first
-        l_initial = name.split.last.split("").first
-        u_name = f_initial + l_initial
-        fake = User.new(
-          first_name: f_name,
-          last_name: l_name,
-          username: u_name,
-          phone: Faker::PhoneNumber.cell_phone,
-          email: Faker::Internet.safe_email(name: f_name)
-        )
-        fakes << fake
-      end
-      render json: fakes
+      render json: session[:fake_users]
     else
       contact_list = User.all
       render json: contact_list
@@ -117,6 +100,30 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(username: params[:username].upcase)
+  end
+
+  def generate_fakes
+    fakes = []
+    id = 500
+      10.times do 
+        name = Faker::Name.name
+        f_name = name.split.first
+        l_name = name.split.last
+        f_initial = name.split.first.split("").first
+        l_initial = name.split.last.split("").first
+        u_name = f_initial + l_initial
+        fake = User.new(
+          id: id,
+          first_name: f_name,
+          last_name: l_name,
+          username: u_name,
+          phone: Faker::PhoneNumber.cell_phone,
+          email: Faker::Internet.safe_email(name: f_name)
+        )
+        fakes << fake
+        id += 1
+      end
+    session[:fake_users] = fakes
   end
 
 end

@@ -80,6 +80,11 @@ class UsersController < ApplicationController
     }
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    render json: { status: 200 }
+  end
+
   def logged_in
       if @current_user
           render json: { 

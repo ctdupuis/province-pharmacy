@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
         if @current_user.username == "DEM"
             session[:fake_schedules] = []
             schedules = session[:fake_users].each{|user| make_schedule(user, session[:fake_schedules])}
-            binding.pry
+            # binding.pry
         else
             schedules = ScheduleSerializer.new(Schedule.all).to_serialized_json
         end

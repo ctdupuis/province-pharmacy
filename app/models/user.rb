@@ -2,7 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     has_many :posts
     has_many :comments, through: :posts
-    has_one :schedule
+    has_one :schedule, dependent: :destroy
     has_many :shifts, through: :schedules
     before_save :username_to_caps
     before_save :capitalize_first_name    
@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
     def as_json(options={})
         super(only: [:id, :username, :admin, :first_name, :last_name, :email, :phone])
-    end 
+    end
 
     private
 
@@ -27,4 +27,5 @@ class User < ApplicationRecord
     def capitalize_last_name
         self.last_name = last_name.capitalize
     end
+
 end

@@ -31,14 +31,28 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(
-      username: params[:username],
-      password: params[:password],
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      phone: params[:phone],
-      email: params[:email]
-    )
+    if @current_user.demo 
+      user = User.create(
+        username: params[:username],
+        password: params[:password],
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        phone: params[:phone],
+        email: params[:email],
+        admin: params[:admin],
+        demo: true
+      )
+    else
+      user = User.create(
+        username: params[:username],
+        password: params[:password],
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        phone: params[:phone],
+        email: params[:email],
+        admin: params[:admin]
+      )
+    end
     if user.save
       render json: user
     else

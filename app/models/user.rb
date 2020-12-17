@@ -28,4 +28,8 @@ class User < ApplicationRecord
         self.last_name = last_name.capitalize
     end
 
+    def self.demo_accounts
+        self.where("demo = ?", true)
+    end
+
 end

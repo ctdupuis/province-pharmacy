@@ -3,18 +3,9 @@ class UsersController < ApplicationController
 
   def login
       if params[:username] == "demo"
-        guest = User.find_by(username: "DEM")
-        if !guest
-          guest = User.create(
-            username: "DEM",
-            password: "demo",
-            first_name: "Demo",
-            last_name: "Account",
-            admin: true
-            ) 
-        end
+        guest_id = rand(7..17)
+        guest = User.demo_accounts.find(guest_id)
         session[:user_id] = guest.id
-        generate_fakes
         render json: {
           logged_in: true,
           user: guest
@@ -58,12 +49,12 @@ class UsersController < ApplicationController
 
   def contact_list
     user = User.find(session[:user_id])
-    if user.username == "DEM"
-      render json: session[:fake_users]
+    if @current_user.demo
+      contact_list = User.demo_accounts
     else
       contact_list = User.all
-      render json: contact_list
     end
+    render json: contact_list
   end
 
   def update
@@ -105,30 +96,6 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(username: params[:username].upcase)
-  end
-
-  def generate_fakes
-    fakes = []
-    id = 500
-      10.times do 
-        name = Faker::Name.name
-        f_name = name.split.first
-        l_name = name.split.last
-        f_initial = name.split.first.split("").first
-        l_initial = name.split.last.split("").first
-        u_name = f_initial + l_initial
-        fake = User.new(
-          id: id,
-          first_name: f_name,
-          last_name: l_name,
-          username: u_name,
-          phone: Faker::PhoneNumber.cell_phone,
-          email: Faker::Internet.safe_email(name: f_name)
-        )
-        fakes << fake
-        id += 1
-      end
-    session[:fake_users] = fakes
   end
 
 end

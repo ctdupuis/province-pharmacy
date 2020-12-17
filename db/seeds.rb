@@ -11,10 +11,14 @@ users = [
 
 
 
-# { username: 'tk', password: ENV['PASS'], first_name: 'Rollentrea', last_name: 'Kree'}
+# { username: 'tk', password: ENV['PASS'], first_name: 'Rollentrea', last_name: 'Harp'}
 #  { username: 'lld', password: ENV['PASS'], first_name: 'Lacey', last_name: 'IDFK'}
 def make_schedule(user)
-    schedule = Schedule.create(user_id: user.id)
+    if user.demo 
+        schedule = Schedule.create(user_id: user.id, demo: true)
+    else
+        schedule = Schedule.create(user_id: user.id)
+    end
     i = 1
     while i < 6 do 
         s = Shift.create(date: "12/#{i}", time: "9-5", schedule: schedule, user: user)
@@ -28,6 +32,32 @@ users.each do |user|
     u = User.create(user)
     make_schedule(u)
 end
+
+def generate_fakes
+   10.times do 
+        name = Faker::Name.name
+        f_name = name.split.first
+        l_name = name.split.last
+        f_initial = name.split.first.split("").first
+        l_initial = name.split.last.split("").first
+        u_name = f_initial + l_initial
+        user_data = {
+            first_name: f_name,
+            last_name: l_name,
+            username: u_name,
+            admin: true,
+            password: "demo",
+            phone: Faker::PhoneNumber.cell_phone,
+            email: Faker::Internet.safe_email(name: f_name),
+            demo: true
+        }
+        fake_user = User.create(user_data)
+        make_schedule(fake_user)
+   end
+end
+
+generate_fakes
+
 
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)

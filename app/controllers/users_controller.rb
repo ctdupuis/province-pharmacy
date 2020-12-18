@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     if @current_user.demo
       contact_list = User.demo_accounts
     else
-      contact_list = User.all
+      contact_list = User.real_accounts
     end
     render json: contact_list
   end

@@ -11,7 +11,7 @@ class User < ApplicationRecord
     validates :username, length: { maximum: 3 }, presence: true
 
     def as_json(options={})
-        super(only: [:id, :username, :admin, :first_name, :last_name, :email, :phone])
+        super(only: [:id, :username, :admin, :first_name, :last_name, :email, :phone, :demo])
     end
 
     private
@@ -29,7 +29,11 @@ class User < ApplicationRecord
     end
 
     def self.demo_accounts
-        self.where("demo = ?", true)
+        self.where(demo: true)
+    end
+
+    def self.real_accounts
+        self.where(demo: nil)
     end
 
 end

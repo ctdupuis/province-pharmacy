@@ -15,4 +15,8 @@ class Post < ApplicationRecord
     def author
         User.find(self.user_id).username
     end
+
+    def self.demo_models
+        self.where("user.demo = ?", true)
+    end
 end

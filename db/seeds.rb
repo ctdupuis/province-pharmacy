@@ -21,7 +21,9 @@ def make_schedule(user)
     end
     i = 1
     while i < 6 do 
-        s = Shift.create(date: "12/#{i}", time: "9-5", schedule: schedule, user: user)
+        start = rand(8..10)
+        finish = rand(3..5)
+        s = Shift.create(date: "12/#{i}", time: "#{start}-#{finish}", schedule: schedule, user: user)
         schedule.shifts << s
         i += 1
     end
@@ -62,6 +64,8 @@ generate_fakes
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
 Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2)
+Post.create(content: "This post should only be available in demo mode", user_id: 7)
+Post.create(content: "Same goes for this one", user_id: 10)
 
 Comment.create(content: "I really hope we actually use this.", user_id: 1, post_id: 1)
 Comment.create(content: "It was locked I twisted it barehanded dude you were right there", user_id: 1, post_id: 2)

@@ -11,7 +11,7 @@ class ScheduleSerializer
                     except: [:created_at, :updated_at]
                 },
                 user: {
-                    only: [:first_name, :last_name, :username]
+                    only: [:id, :first_name, :last_name, :username]
                 }
             },
             except: [:created_at]

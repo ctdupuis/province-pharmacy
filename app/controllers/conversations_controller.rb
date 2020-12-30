@@ -10,8 +10,12 @@ class ConversationsController < ApplicationController
     end
 
     def index
-        conversations = ConversationsSerializer.new(Conversation.all).to_serialized_json
-        render json: conversations
+        if @current_user.demo
+            conversation = ConversationsSerializer.new(Conversation.find(2)).to_serialized_json
+        else
+            conversation = ConversationsSerializer.new(Conversation.find(1)).to_serialized_json
+        end
+        render json: conversation
     end
 
     private

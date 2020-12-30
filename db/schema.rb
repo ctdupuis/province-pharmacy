@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2020_12_29_040226) do
   create_table "messages", force: :cascade do |t|
     t.string "text"
     t.bigint "conversation_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
   end
 

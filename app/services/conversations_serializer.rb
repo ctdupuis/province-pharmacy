@@ -8,10 +8,11 @@ class ConversationsSerializer
         options = {
             include: {
                 messages: {
-                    except: [:updated_at]
+                    except: [:updated_at, :created_at],
+                    methods: [:updated, :created]
                 }
             },
-            except: [:created_at]
+            except: [:created_at, :updated_at]
         }
         @conversation.to_json(options)
     end

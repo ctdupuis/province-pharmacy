@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_many :comments, through: :posts
     has_one :schedule, dependent: :destroy
     has_many :shifts, through: :schedules
+    has_many :messages
     before_save :username_to_caps
     before_save :capitalize_first_name    
     before_save :capitalize_last_name

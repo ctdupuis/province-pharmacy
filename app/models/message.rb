@@ -1,4 +1,5 @@
 class Message < ApplicationRecord
+    belongs_to :user
 
     def created
         self.created_at.in_time_zone('Central Time (US & Canada)').strftime("%m/%d/%y at%l:%M %P")

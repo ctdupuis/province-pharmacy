@@ -9,6 +9,11 @@ class ConversationsController < ApplicationController
         end
     end
 
+    def index
+        conversations = ConversationsSerializer.new(Conversation.all).to_serialized_json
+        render json: conversations
+    end
+
     private
 
     def conversation_params

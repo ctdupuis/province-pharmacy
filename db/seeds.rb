@@ -60,7 +60,12 @@ end
 
 generate_fakes
 
+Conversation.create(title: "Province Portal")
+Conversation.create(title: "Province Portal Demo Mode", demo: true)
 
+Message.create(text: "Greg Monroe updated CC info", conversation_id: 1)
+Message.create(text: "John Doe here to pickup DOB 12/29/90", conversation_id: 1)
+Message.create(text: "Welcome to Patient Services Demo", conversation_id: 2)
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
 Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2)

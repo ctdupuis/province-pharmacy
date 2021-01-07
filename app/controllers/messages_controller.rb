@@ -26,7 +26,8 @@ class MessagesController < ApplicationController
             # conversation = ConversationsSerializer.new(Conversation.find(1)).to_serialized_json
             conversation = Conversation.find(1)
         end
-        render json: conversation.messages
+        messages = MessagesSerializer.new(conversation.messages).to_serialized_json
+        render json: messages
     end
 
 end

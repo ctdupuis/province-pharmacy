@@ -6,8 +6,10 @@ class MessagesSerializer
 
     def to_serialized_json
         options = {
-            include: [:id, :conversation_id, :text, :created_at]
+            except: [:updated],
+            methods: [:updated, :created, :author]
         }
+        @message.to_json(options)
     end
 
 end

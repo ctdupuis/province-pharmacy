@@ -8,7 +8,7 @@ class ConversationsSerializer
         options = {
             include: {
                 messages: {
-                    except: [:updated_at, :created_at],
+                    except: [:updated_at],
                     methods: [:updated, :created, :author]
                 }
             },

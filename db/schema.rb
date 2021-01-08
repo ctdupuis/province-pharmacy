@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 2021_01_08_023054) do
   create_table "delivery_entries", force: :cascade do |t|
     t.bigint "delivery_log_id", null: false
     t.bigint "user_id"
-    t.decimal "miles"
+    t.float "miles"
     t.string "patient_name"
-    t.date "patient_dob"
+    t.string "patient_dob"
     t.string "patient_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

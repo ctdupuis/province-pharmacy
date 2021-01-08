@@ -1,10 +1,9 @@
 
 users = [
-    { username: 'ctd', password: ENV['PASS'], first_name: 'cody', last_name: 'dupuis', admin: true },
-    { username: 'mp', password: ENV['PASS'], first_name: 'mona', last_name: 'patel', admin: true },
+    { username: 'ctd', password: ENV['PASS'], first_name: 'Cody', last_name: 'Dupuis', admin: true },
+    { username: 'mp', password: ENV['PASS'], first_name: 'Mona', last_name: 'Patel', admin: true },
     { username: 'amv', password: ENV['PASS'], first_name: 'Angelle', last_name: 'Voinche', admin: true },
-    { username: 'td', password: ENV['PASS'], first_name: 'Thuy', last_name: 'dang', admin: true },
-    { username: 'ess', password: ENV['PASS'], first_name: 'evan', last_name: 'st. Germain' },
+    { username: 'ess', password: ENV['PASS'], first_name: 'Evan', last_name: 'St. Germain' },
     { username: 'bcs', password: ENV['PASS'], first_name: 'Brittany', last_name: 'Sanders'}
 ]
 
@@ -75,3 +74,39 @@ Post.create(content: "Same goes for this one", user_id: 10)
 Comment.create(content: "I really hope we actually use this.", user_id: 1, post_id: 1)
 Comment.create(content: "It was locked I twisted it barehanded dude you were right there", user_id: 1, post_id: 2)
 Comment.create(content: "I must have loosened it for you", user_id: 4, post_id: 2)
+
+DeliveryLog.create(demo: true)
+DeliveryLog.create(demo: false)
+
+DeliveryEntry.create(
+    delivery_log_id: 1,
+    patient_name: "Peter Parker",
+    patient_dob: "08/10/2001",
+    patient_address: "20 Ingram St",
+    miles: 2.5,
+    user_id: 1
+)
+DeliveryEntry.create(
+    delivery_log_id: 2,
+    patient_name: "Joseph Joestar",
+    patient_dob: "09/27/1920",
+    patient_address: "69 Hamon Overdrive",
+    miles: 4.5,
+    user_id: 7
+)
+DeliveryEntry.create(
+    delivery_log_id: 2,
+    patient_name: "Eren Jaegar",
+    patient_dob: "12/07/2012",
+    patient_address: "13 Marley Circle",
+    miles: 1.7,
+    user_id: 7
+)
+DeliveryEntry.create(
+    delivery_log_id: 2,
+    patient_name: "Miles Morales",
+    patient_dob: "12/31/2018",
+    patient_address: "5544 Brooklyn Visions Ave",
+    miles: 3.4,
+    user_id: 7
+)

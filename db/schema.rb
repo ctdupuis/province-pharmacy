@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_040226) do
+ActiveRecord::Schema.define(version: 2021_01_08_023054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,25 @@ ActiveRecord::Schema.define(version: 2020_12_29_040226) do
 
   create_table "conversations", force: :cascade do |t|
     t.string "title"
+    t.boolean "demo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "delivery_entries", force: :cascade do |t|
+    t.bigint "delivery_log_id", null: false
+    t.bigint "user_id"
+    t.decimal "miles"
+    t.string "patient_name"
+    t.date "patient_dob"
+    t.string "patient_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_log_id"], name: "index_delivery_entries_on_delivery_log_id"
+    t.index ["user_id"], name: "index_delivery_entries_on_user_id"
+  end
+
+  create_table "delivery_logs", force: :cascade do |t|
     t.boolean "demo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -80,6 +99,8 @@ ActiveRecord::Schema.define(version: 2020_12_29_040226) do
     t.boolean "demo"
   end
 
+  add_foreign_key "delivery_entries", "delivery_logs"
+  add_foreign_key "delivery_entries", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
 end

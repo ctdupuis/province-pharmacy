@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :schedules do 
     resources :shifts
   end
+  resources :delivery_entries
   post "/", to: "users#login"
   post "/update", to: "users#update"
   post "/users", to: "users#create"

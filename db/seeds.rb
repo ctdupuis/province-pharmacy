@@ -110,3 +110,32 @@ DeliveryEntry.create(
     miles: 3.4,
     user_id: 7
 )
+
+Inventory.create(demo: false)
+Inventory.create(demo: true)
+
+items = [
+    {
+        product_name: "Padded Pak",
+        unit_of_measurement: "Box of 50",
+        quantity: 20,
+        category: "Shipping Supplies",
+        inventory_id: 1
+    },
+    {
+        product_name: "Medium Box",
+        unit_of_measurement: "Box of 10",
+        quantity: 10,
+        category: "Shipping Supplies",
+        inventory_id: 1
+    },
+    {
+        product_name: "Uline Insulated Box",
+        unit_of_measurement: "Box of 4",
+        quantity: 6,
+        category: "Shipping Supplies",
+        inventory_id: 1
+    }
+]
+
+items.each{ |item| Item.create(item) }

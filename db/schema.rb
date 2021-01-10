@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_01_10_022553) do
   end
 
   create_table "inventories", force: :cascade do |t|
+    t.boolean "demo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :shifts
   end
   resources :delivery_entries
+  resources :items
   post "/", to: "users#login"
   post "/update", to: "users#update"
   post "/users", to: "users#create"

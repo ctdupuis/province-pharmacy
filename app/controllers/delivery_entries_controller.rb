@@ -8,7 +8,7 @@ class DeliveryEntriesController < ApplicationController
         end
         new_entry = DeliveryEntry.new(
             user_id: @current_user.id,
-            delivery_log_id: log.id
+            delivery_log_id: log.id,
             patient_name: params[:patient_name],
             patient_dob: params[:patient_dob],
             patient_address: params[:patient_address],
@@ -20,5 +20,14 @@ class DeliveryEntriesController < ApplicationController
             render json: { status: 402 }
         end
     end
-
+    
+    def index
+        if @current_user.demo
+            log = DeliveryLog.find(2)
+        else
+            log = DeliveryLog.find(1)
+        end
+        entries = log.delivery_entries
+        render json: entries
+    end
 end

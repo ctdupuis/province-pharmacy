@@ -91,7 +91,7 @@ DeliveryEntry.create(
     patient_name: "Joseph Joestar",
     patient_dob: "09/27/1920",
     patient_address: "69 Hamon Overdrive",
-    miles: 4.5,
+    miles: 4.9,
     user_id: 7
 )
 DeliveryEntry.create(

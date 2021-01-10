@@ -1,3 +1,3 @@
 class DeliveryEntry < ApplicationRecord
-    belongs_to :delivery_entry
+    belongs_to :delivery_log
 end

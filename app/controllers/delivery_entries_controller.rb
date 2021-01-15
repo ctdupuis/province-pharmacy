@@ -6,19 +6,19 @@ class DeliveryEntriesController < ApplicationController
         else
             log = DeliveryLog.find(1)
         end
-        # binding.pry
-        miles = params[:miles].to_i
-        new_entry = DeliveryEntry.new(
-            user_id: @current_user.id,
-            delivery_log_id: log.id,
-            patient_name: params[:patient_name],
-            patient_address: params[:patient_address],
-            miles: params[:miles]
-        )
-        if new_entry.save
-            render json: { status: 200 }
+        entries = params[:locations].map do |location|
+            DeliveryEntry.create(
+                user_id: @current_user.id,
+                delivery_log_id: log.id,
+                patient_name: location["patient"],
+                patient_address: location["address"],
+                miles: params[:mileage].to_f
+            )
+        end
+        if entries
+            render json: { status: 200, message: "Deliveries successfully saved!"}
         else
-            render json: { status: 402 }
+            render json: { status: 402, message: "Some errors occurred" }
         end
     end
     

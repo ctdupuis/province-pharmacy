@@ -5,7 +5,6 @@ class CreateDeliveryEntries < ActiveRecord::Migration[6.0]
       t.references :user, foreign_key: true
       t.float :miles
       t.string :patient_name
-      t.string :patient_dob
       t.string :patient_address
 
       t.timestamps

@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2021_01_10_022553) do
     t.bigint "user_id"
     t.float "miles"
     t.string "patient_name"
-    t.string "patient_dob"
     t.string "patient_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

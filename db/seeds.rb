@@ -81,7 +81,6 @@ DeliveryLog.create(demo: false)
 DeliveryEntry.create(
     delivery_log_id: 1,
     patient_name: "Peter Parker",
-    patient_dob: "08/10/2001",
     patient_address: "20 Ingram St",
     miles: 2.5,
     user_id: 1
@@ -89,7 +88,6 @@ DeliveryEntry.create(
 DeliveryEntry.create(
     delivery_log_id: 2,
     patient_name: "Joseph Joestar",
-    patient_dob: "09/27/1920",
     patient_address: "69 Hamon Overdrive",
     miles: 4.9,
     user_id: 7
@@ -97,7 +95,6 @@ DeliveryEntry.create(
 DeliveryEntry.create(
     delivery_log_id: 2,
     patient_name: "Eren Jaegar",
-    patient_dob: "12/07/2012",
     patient_address: "13 Marley Circle",
     miles: 1.7,
     user_id: 7
@@ -105,7 +102,6 @@ DeliveryEntry.create(
 DeliveryEntry.create(
     delivery_log_id: 2,
     patient_name: "Miles Morales",
-    patient_dob: "12/31/2018",
     patient_address: "5544 Brooklyn Visions Ave",
     miles: 3.4,
     user_id: 7

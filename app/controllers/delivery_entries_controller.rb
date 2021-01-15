@@ -6,11 +6,12 @@ class DeliveryEntriesController < ApplicationController
         else
             log = DeliveryLog.find(1)
         end
+        # binding.pry
+        miles = params[:miles].to_i
         new_entry = DeliveryEntry.new(
             user_id: @current_user.id,
             delivery_log_id: log.id,
             patient_name: params[:patient_name],
-            patient_dob: params[:patient_dob],
             patient_address: params[:patient_address],
             miles: params[:miles]
         )

@@ -132,6 +132,20 @@ items = [
         category: "Shipping Supplies",
         inventory_id: 1
     },
+    {
+        product_name: "Swiffer Soap",
+        unit_of_measurement: "Box of 24",
+        quantity: 2,
+        category: "Cleaning Supplies",
+        inventory_id: 1
+    },
+    {
+        product_name: "409 Spray Cleaner",
+        unit_of_measurement: "20 oz bottle",
+        quantity: 3,
+        category: "Cleaning Supplies",
+        inventory_id: 1
+    },
 
     {
         product_name: "Padded Pak",
@@ -152,6 +166,20 @@ items = [
         unit_of_measurement: "Box of 4",
         quantity: 6,
         category: "Shipping Supplies",
+        inventory_id: 2
+    },
+    {
+        product_name: "Swiffer Soap",
+        unit_of_measurement: "Box of 24",
+        quantity: 2,
+        category: "Cleaning Supplies",
+        inventory_id: 2
+    },
+    {
+        product_name: "409 Spray Cleaner",
+        unit_of_measurement: "20 oz bottle",
+        quantity: 3,
+        category: "Cleaning Supplies",
         inventory_id: 2
     }
 ]

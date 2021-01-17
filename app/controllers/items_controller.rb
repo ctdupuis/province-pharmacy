@@ -16,13 +16,13 @@ class ItemsController < ApplicationController
         else
             inventory = Inventory.find(1)
         end
-        items = params[:items].map do |item|
+        items = params[:itemData][:items].map do |item|
             Item.create(
                 product_name: params[:product_name],
                 quantity: params[:qty].to_i,
                 unit_of_measurement: params[:units],
                 category: params[:category],
-                invrntory_id: inventory.id
+                inventory_id: inventory.id
             )
         end
         if items

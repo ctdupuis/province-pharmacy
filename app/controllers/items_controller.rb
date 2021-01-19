@@ -18,10 +18,10 @@ class ItemsController < ApplicationController
         end
         items = params[:itemData][:items].map do |item|
             Item.create(
-                product_name: params[:product_name],
-                quantity: params[:qty].to_i,
-                unit_of_measurement: params[:units],
-                category: params[:category],
+                product_name: item[:product_name],
+                quantity: item[:qty].to_i,
+                unit_of_measurement: item[:units],
+                category: item[:category],
                 inventory_id: inventory.id
             )
         end

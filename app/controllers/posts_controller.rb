@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   def index
     if @current_user.demo
-      posts = Post.all.select{ |p| p if p.user.demo }
+      posts = Post.all.order("created_at DESC").select{ |p| p if p.user.demo }
     else
       posts = Post.all.order("created_at DESC").select{|p| p if !p.user.demo }
     end

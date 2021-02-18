@@ -20,10 +20,8 @@ class MessagesController < ApplicationController
 
     def index
         if @current_user.demo
-            # conversation = ConversationsSerializer.new(Conversation.find(2)).to_serialized_json
             conversation = Conversation.find(2)
         else
-            # conversation = ConversationsSerializer.new(Conversation.find(1)).to_serialized_json
             conversation = Conversation.find(1)
         end
         messages = MessagesSerializer.new(conversation.messages).to_serialized_json

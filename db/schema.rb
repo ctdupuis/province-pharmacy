@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_10_022553) do
+ActiveRecord::Schema.define(version: 2021_02_20_211918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_entries", force: :cascade do |t|
+    t.string "patient_name"
+    t.string "rx_num"
+    t.integer "original_amt"
+    t.integer "adjusted_amt"
+    t.bigint "check_log_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["check_log_id"], name: "index_check_entries_on_check_log_id"
+  end
+
+  create_table "check_logs", force: :cascade do |t|
+    t.boolean "demo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -115,6 +132,7 @@ ActiveRecord::Schema.define(version: 2021_01_10_022553) do
     t.boolean "demo"
   end
 
+  add_foreign_key "check_entries", "check_logs"
   add_foreign_key "delivery_entries", "delivery_logs"
   add_foreign_key "delivery_entries", "users"
   add_foreign_key "items", "inventories"

@@ -107,6 +107,38 @@ DeliveryEntry.create(
     user_id: 7
 )
 
+CheckLog.create(demo: true)
+CheckLog.create(demo: false)
+
+CheckEntry.create(
+    patient_name: "Jimmy John",
+    rx_num: "RX#212222-07",
+    original_amt: 100,
+    adjusted_amt: 25,
+    check_log_id: 1
+)
+CheckEntry.create(
+    patient_name: "Al Copeland",
+    rx_num: "RX#109876-02",
+    original_amt: 50,
+    adjusted_amt: 0,
+    check_log_id: 1
+)
+CheckEntry.create(
+    patient_name: "Jersey Mike",
+    rx_num: "RX#762773-00",
+    original_amt: 210,
+    adjusted_amt: 15,
+    check_log_id: 2
+)
+CheckEntry.create(
+    patient_name: "Ronald McDonald",
+    rx_num: "RX#321123-10",
+    original_amt: 50,
+    adjusted_amt: 35,
+    check_log_id: 2
+)
+
 Inventory.create(demo: false)
 Inventory.create(demo: true)
 

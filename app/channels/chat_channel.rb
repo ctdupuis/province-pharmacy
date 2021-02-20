@@ -9,5 +9,5 @@ class ChatChannel < ApplicationCable::Channel
     ChatChannel.broadcast_to('chat_channel', socket)
   end
   
-  def unsubscribed; end
+
 end

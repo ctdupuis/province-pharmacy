@@ -4,14 +4,11 @@ users = [
     { username: 'mp', password: ENV['PASS'], first_name: 'Mona', last_name: 'Patel', admin: true },
     { username: 'amv', password: ENV['PASS'], first_name: 'Angelle', last_name: 'Voinche', admin: true },
     { username: 'ess', password: ENV['PASS'], first_name: 'Evan', last_name: 'St. Germain' },
-    { username: 'bcs', password: ENV['PASS'], first_name: 'Brittany', last_name: 'Sanders'}
+    { username: 'pm', password: ENV['PASS'], first_name: 'Paisley', last_name: 'Mouton' },
+    { username: 'bcs', password: ENV['PASS'], first_name: 'Brittany', last_name: 'Sanders'},
+    { username: 'ld', password: ENV['PASS'], first_name: 'Lacey', last_name: 'Dooley'}
 ]
 
-
-
-
-# { username: 'tk', password: ENV['PASS'], first_name: 'Rollentrea', last_name: 'Harp'}
-#  { username: 'lld', password: ENV['PASS'], first_name: 'Lacey', last_name: 'IDFK'}
 def make_schedule(user)
     if user.demo 
         schedule = Schedule.create(user_id: user.id, demo: true)

@@ -6,17 +6,17 @@ class CheckEntriesController < ApplicationController
         else
             log = CheckLog.find(1)
         end
-        CheckEntry.create(
+        new_entry = CheckEntry.create(
             check_log_id: log.id,
-            patient_name: params["patient"],
-            rx_num: params["rx"],
+            patient_name: params["patient_name"],
+            rx_num: params["rx_num"],
             original_amt: params["original_amt"].to_i,
             adjusted_amt: params["adjusted_amt"].to_i
         )
-        if entries
-            render json: { status: 200, message: "Check entries saved!"}
+        if new_entry
+            render json: { created: true, message: "Check entries saved!"}
         else
-            render json: { status: 402, message: "Some errors occurred" }
+            render json: { created: false, message: "Some errors occurred" }
         end
     end
     

@@ -109,28 +109,28 @@ CheckLog.create(demo: false)
 
 CheckEntry.create(
     patient_name: "Jimmy John",
-    rx_num: "RX#212222-07",
+    rx_num: "212222",
     original_amt: 100,
     adjusted_amt: 25,
     check_log_id: 1
 )
 CheckEntry.create(
     patient_name: "Al Copeland",
-    rx_num: "RX#109876-02",
+    rx_num: "109876",
     original_amt: 50,
     adjusted_amt: 0,
     check_log_id: 1
 )
 CheckEntry.create(
     patient_name: "Jersey Mike",
-    rx_num: "RX#762773-00",
+    rx_num: "762773",
     original_amt: 210,
     adjusted_amt: 15,
     check_log_id: 2
 )
 CheckEntry.create(
     patient_name: "Ronald McDonald",
-    rx_num: "RX#321123-10",
+    rx_num: "321123",
     original_amt: 50,
     adjusted_amt: 35,
     check_log_id: 2

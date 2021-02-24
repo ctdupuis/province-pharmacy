@@ -29,6 +29,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    post = Post.find(params[:id])
+    post.update(params[:content])
+    if post.save 
+      render json: { updated: true }
+    else
+      render json: { updated: false }
+    end
   end
 
   def destroy

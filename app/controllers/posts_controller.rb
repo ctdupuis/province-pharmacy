@@ -39,5 +39,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    Post.find(params[:id]).destroy
+    render json: { status: 200 }
   end
 end

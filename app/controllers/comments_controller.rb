@@ -23,7 +23,8 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        
+        @post.comments.find(params[:id]).destroy
+        render json: { status: 200 }
     end
 
     private

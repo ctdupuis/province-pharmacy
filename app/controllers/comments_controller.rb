@@ -11,6 +11,21 @@ class CommentsController < ApplicationController
         end
     end
 
+    def update 
+        comment = @post.comments.find(params[:id])
+        comment.update_attribute(:content, params[:content])
+        if comment.save
+            render json: comment, methods: [:created, :updated, :author]
+        else
+            errors = comment.error.full_messages.map
+            render json: { error: errors }
+        end
+    end
+
+    def destroy
+        
+    end
+
     private
 
     def set_post

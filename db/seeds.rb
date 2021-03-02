@@ -65,8 +65,10 @@ Message.create(text: "Welcome to Patient Services Demo", conversation_id: 2, use
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
 Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2)
-Post.create(content: "This post should only be available in demo mode", user_id: 7)
-Post.create(content: "Same goes for this one", user_id: 10)
+
+sample = User.demo_accounts.sample
+Post.create(content: "This post should only be available in demo mode", user_id: sample.id)
+Post.create(content: "Same goes for this one", user_id: sample.id)
 
 Comment.create(content: "I really hope we actually use this.", user_id: 1, post_id: 1)
 Comment.create(content: "It was locked I twisted it barehanded dude you were right there", user_id: 1, post_id: 2)

@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 
   def login
       if params[:username] == "demo"
-        guest_id = rand(7..17)
-        guest = User.demo_accounts.find(guest_id)
+        guest = User.demo_accounts.sample
         session[:user_id] = guest.id
         render json: {
           logged_in: true,

@@ -17,4 +17,5 @@ class PostSerializer
         }
         @post.to_json(options)
     end
+
 end

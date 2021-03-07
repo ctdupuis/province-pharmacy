@@ -31,4 +31,19 @@ class ItemsController < ApplicationController
             render json: { errors: "One or more items could not be added"}
         end
     end
+
+    def update 
+        item = Item.find(params[:id])
+        item.update(
+            product_name: params[:product_name],
+            quantity: params[:quantity],
+            unit_of_measurement: params[:unit_of_measurement]
+        )
+        if item.save 
+            render json: item
+        else
+            render json: { status: 500 }
+        end
+    end
+    
 end

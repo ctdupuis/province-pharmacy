@@ -1,5 +1,6 @@
 class DeliveryEntry < ApplicationRecord
     belongs_to :delivery_log
+    belongs_to :user
 
     validates :patient_name, presence: true
     validates :patient_address, presence: true

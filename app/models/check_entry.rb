@@ -11,9 +11,13 @@ class CheckEntry < ApplicationRecord
         self.created_at.in_time_zone('Central Time (US & Canada)').to_date
     end
 
+    def date_format
+        self.created_at.in_time_zone('Central Time (US & Canada)').strftime("%m/%d/%y")
+    end
+
     def as_json(options={})
         super(except: [:created_at, :updated_at], 
-            methods: [:created, :price_difference]
+            methods: [:created, :price_difference, :date_format]
         )
     end
 

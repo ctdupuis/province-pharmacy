@@ -9,4 +9,12 @@ class DeliveryEntry < ApplicationRecord
         # self.created_at.in_time_zone('Central Time (US & Canada)').strftime("%m/%d/Y")
         self.created_at.in_time_zone('Central Time (US & Canada)').to_date
     end
+
+    def as_json(options={})
+        super(include: {
+            user: {
+                only: [:username, :first_name]
+            }
+        }, methods: [:created])
+    end
 end

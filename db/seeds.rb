@@ -89,21 +89,21 @@ DeliveryEntry.create(
     patient_name: "Joseph Joestar",
     patient_address: "69 Hamon Overdrive",
     miles: 4.9,
-    user_id: 7
+    user_id: 10
 )
 DeliveryEntry.create(
     delivery_log_id: 2,
     patient_name: "Eren Jaegar",
     patient_address: "13 Marley Circle",
     miles: 1.7,
-    user_id: 7
+    user_id: 10
 )
 DeliveryEntry.create(
     delivery_log_id: 2,
     patient_name: "Miles Morales",
     patient_address: "5544 Brooklyn Visions Ave",
     miles: 3.4,
-    user_id: 7
+    user_id: 10
 )
 
 CheckLog.create(demo: true)

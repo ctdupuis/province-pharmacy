@@ -10,7 +10,17 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     end
     
     allow do
-      origins "province-client.herokuapp.com"
+      origins "province-portal.herokuapp.com"
+    
+    
+      resource '*',
+        headers: :any,
+        methods: [:get, :post, :put, :patch, :delete, :options, :head],
+        credentials: true
+    end
+
+    allow do
+      origins "province-portal.com"
     
     
       resource '*',

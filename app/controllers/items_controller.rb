@@ -45,5 +45,10 @@ class ItemsController < ApplicationController
             render json: { status: 500 }
         end
     end
+
+    def destroy
+        Item.find(params[:id]).destroy
+        render json: { status: 200 }
+    end
     
 end

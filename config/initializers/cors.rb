@@ -10,7 +10,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     end
     
     allow do
-      origins "province-portal.herokuapp.com"
+      origins "https://province-portal.herokuapp.com"
     
     
       resource '*',
@@ -20,7 +20,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     end
 
     allow do
-      origins "province-portal.com"
+      origins "https://province-portal.com"
     
     
       resource '*',

@@ -13,7 +13,7 @@ class CheckLogSerializer
                 }
             }
         }
+        @log.to_json(options)
     end
-    @log.to_json(options)
 
 end

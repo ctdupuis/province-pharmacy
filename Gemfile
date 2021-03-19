@@ -25,6 +25,7 @@ gem 'dotenv-rails'
 gem 'pry'
 gem 'rack-cors'
 gem 'faker'
+gem 'rails_same_site_cookie'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -30,7 +30,10 @@ class PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-    post.update_attribute(:content, params[:content])
+    post.update(
+      content: params[:content],
+      edited: true
+    )
     if post.save 
       render json: PostSerializer.new(post).to_serialized_json
     else

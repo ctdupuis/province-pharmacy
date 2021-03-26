@@ -13,7 +13,10 @@ class CommentsController < ApplicationController
 
     def update 
         comment = @post.comments.find(params[:id])
-        comment.update_attribute(:content, params[:content])
+        comment.update(
+            content: params[:content],
+            edited: true
+        )
         if comment.save
             render json: comment, methods: [:created, :updated, :author]
         else

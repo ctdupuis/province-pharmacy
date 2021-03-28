@@ -28,4 +28,9 @@ class MessagesController < ApplicationController
         render json: messages
     end
 
+    def destroy 
+        Message.find(params[:id]).destroy
+        render json: { status: 200 }
+    end
+
 end

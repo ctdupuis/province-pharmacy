@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/logged_in', to: 'users#logged_in'
   get '/contacts', to: 'users#contact_list'
   post '/report', to: 'reports#show'
-  resources :messages, only: [:create, :index]
+  resources :messages, only: [:create, :index, :destroy]
   resources :conversations, only: [:create, :index]
   mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

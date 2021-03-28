@@ -33,4 +33,8 @@ class MessagesController < ApplicationController
         render json: { status: 200 }
     end
 
+    def destroy_all
+        Message.destroy_all
+    end
+
 end

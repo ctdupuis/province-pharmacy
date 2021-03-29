@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
         when "Check"
             report = CheckLog.find(id).check_entries.map{ |e| e if e.created >= start_date && e.created <= end_date }.compact
         when "Mileage"
-            report = DeliveryLog.find(id).delivery_entries.map{ |e| e if e.created >= start_date && e.created <= end_date }.compact
+            report = DeliveryLog.find(id).routes.map{ |t| t if t.created >= start_date && t.created <= end_date }.compact
         end
         if report
             render json: report

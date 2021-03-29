@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :schedules do 
     resources :shifts
   end
-  resources :delivery_entries
+  resources :routes
   resources :check_entries
   resources :items
   post "/", to: "users#login"

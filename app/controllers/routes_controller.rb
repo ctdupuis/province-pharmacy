@@ -7,12 +7,12 @@ class RoutesController < ApplicationController
             log = DeliveryLog.find(1)
         end
         route = Route.create(
+            user_id: @current_user.id,
             miles: params[:mileage].to_f, 
             delivery_log_id: log.id
         )
         entries = params[:locations].map do |location|
             Stop.create(
-                user_id: @current_user.id,
                 patient_name: location["patient"],
                 patient_address: location["address"],
                 route_id: route.id

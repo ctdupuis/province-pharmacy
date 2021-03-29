@@ -67,50 +67,21 @@ Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
 
 
 sample = User.demo_accounts.sample
-Post.create(content: "This post should only be available in demo mode", user_id: sample.id)
+Post.create(content: "Welcome to the Province Employee Portal Demo! Please feel free to leave your comments here(:", user_id: sample.id)
 Post.create(content: "Same goes for this one", user_id: sample.id)
 
 
 DeliveryLog.create(demo: false)
 DeliveryLog.create(demo: true)
 
-Route.create(miles: 10.7)
+Route.create(miles: 10.7, delivery_log_id: 2, user_id: sample.id)
+Route.create(miles: 15.4, delivery_log_id: 2, user_id: sample.id)
 
 Stop.create(patient_name: "Peter Parker", patient_address: "20 Ingram St", route_id: 1)
-Stop.create(patient_name: "Miles Morales", patient_address: "20 ", route_id: 1)
-stops = [
-    {patient_name: "Peter Parker", patient_address: "20 Ingram St", route_id: 1},
-    {patient_name: "Miles Morales", patient_address: "20 ", route_id: 1}
-]
+Stop.create(patient_name: "Miles Morales", patient_address: "17 Brooklyn Visions Pl", route_id: 1)
 
-# DeliveryEntry.create(
-#     delivery_log_id: 1,
-#     patient_name: "Peter Parker",
-#     patient_address: "20 Ingram St",
-#     miles: 2.5,
-#     user_id: 1
-# )
-# DeliveryEntry.create(
-#     delivery_log_id: 2,
-#     patient_name: "Joseph Joestar",
-#     patient_address: "69 Hamon Overdrive",
-#     miles: 4.9,
-#     user_id: 10
-# )
-# DeliveryEntry.create(
-#     delivery_log_id: 2,
-#     patient_name: "Eren Jaegar",
-#     patient_address: "13 Marley Circle",
-#     miles: 1.7,
-#     user_id: 10
-# )
-# DeliveryEntry.create(
-#     delivery_log_id: 2,
-#     patient_name: "Miles Morales",
-#     patient_address: "5544 Brooklyn Visions Ave",
-#     miles: 3.4,
-#     user_id: 10
-# )
+Stop.create(patient_name: "Eren Jaegar", patient_address: "2000 Shiganshina Ave", route_id: 2)
+Stop.create(patient_name: "Armin Arlert", patient_address: "2340 Trost St", route_id: 2)
 
 CheckLog.create(demo: true)
 CheckLog.create(demo: false)

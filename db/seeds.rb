@@ -64,47 +64,53 @@ Message.create(text: "John Doe here to pickup DOB 12/29/90", conversation_id: 1,
 Message.create(text: "Welcome to Patient Services Demo", conversation_id: 2, user_id: 8)
 
 Post.create(content: 'Welcome to the Province Employee Portal!', user_id: 1)
-Post.create(content: "No one gets off days anymore, I'm sick of being short-handed. Cody forgot to lock the shutter and Evan always has some kind of smart ass comment to make about everything.", user_id: 2)
+
 
 sample = User.demo_accounts.sample
 Post.create(content: "This post should only be available in demo mode", user_id: sample.id)
 Post.create(content: "Same goes for this one", user_id: sample.id)
 
-Comment.create(content: "I really hope we actually use this.", user_id: 1, post_id: 1)
-Comment.create(content: "It was locked I twisted it barehanded dude you were right there", user_id: 1, post_id: 2)
-Comment.create(content: "I must have loosened it for you", user_id: 4, post_id: 2)
 
-DeliveryLog.create(demo: true)
 DeliveryLog.create(demo: false)
+DeliveryLog.create(demo: true)
 
-DeliveryEntry.create(
-    delivery_log_id: 1,
-    patient_name: "Peter Parker",
-    patient_address: "20 Ingram St",
-    miles: 2.5,
-    user_id: 1
-)
-DeliveryEntry.create(
-    delivery_log_id: 2,
-    patient_name: "Joseph Joestar",
-    patient_address: "69 Hamon Overdrive",
-    miles: 4.9,
-    user_id: 10
-)
-DeliveryEntry.create(
-    delivery_log_id: 2,
-    patient_name: "Eren Jaegar",
-    patient_address: "13 Marley Circle",
-    miles: 1.7,
-    user_id: 10
-)
-DeliveryEntry.create(
-    delivery_log_id: 2,
-    patient_name: "Miles Morales",
-    patient_address: "5544 Brooklyn Visions Ave",
-    miles: 3.4,
-    user_id: 10
-)
+Route.create(miles: 10.7)
+
+Stop.create(patient_name: "Peter Parker", patient_address: "20 Ingram St", route_id: 1)
+Stop.create(patient_name: "Miles Morales", patient_address: "20 ", route_id: 1)
+stops = [
+    {patient_name: "Peter Parker", patient_address: "20 Ingram St", route_id: 1},
+    {patient_name: "Miles Morales", patient_address: "20 ", route_id: 1}
+]
+
+# DeliveryEntry.create(
+#     delivery_log_id: 1,
+#     patient_name: "Peter Parker",
+#     patient_address: "20 Ingram St",
+#     miles: 2.5,
+#     user_id: 1
+# )
+# DeliveryEntry.create(
+#     delivery_log_id: 2,
+#     patient_name: "Joseph Joestar",
+#     patient_address: "69 Hamon Overdrive",
+#     miles: 4.9,
+#     user_id: 10
+# )
+# DeliveryEntry.create(
+#     delivery_log_id: 2,
+#     patient_name: "Eren Jaegar",
+#     patient_address: "13 Marley Circle",
+#     miles: 1.7,
+#     user_id: 10
+# )
+# DeliveryEntry.create(
+#     delivery_log_id: 2,
+#     patient_name: "Miles Morales",
+#     patient_address: "5544 Brooklyn Visions Ave",
+#     miles: 3.4,
+#     user_id: 10
+# )
 
 CheckLog.create(demo: true)
 CheckLog.create(demo: false)

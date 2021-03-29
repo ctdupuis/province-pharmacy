@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_one :schedule, dependent: :destroy
     has_many :shifts, through: :schedules
     has_many :messages
+    has_many :routes
+
     has_many :delivery_entries
     
     before_save :username_to_caps

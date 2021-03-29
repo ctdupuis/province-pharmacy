@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_020014) do
+ActiveRecord::Schema.define(version: 2021_03_28_235708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,18 +46,6 @@ ActiveRecord::Schema.define(version: 2021_03_26_020014) do
     t.boolean "demo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "delivery_entries", force: :cascade do |t|
-    t.bigint "delivery_log_id", null: false
-    t.bigint "user_id"
-    t.float "miles"
-    t.string "patient_name"
-    t.string "patient_address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["delivery_log_id"], name: "index_delivery_entries_on_delivery_log_id"
-    t.index ["user_id"], name: "index_delivery_entries_on_user_id"
   end
 
   create_table "delivery_logs", force: :cascade do |t|
@@ -107,6 +95,16 @@ ActiveRecord::Schema.define(version: 2021_03_26_020014) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "routes", force: :cascade do |t|
+    t.bigint "delivery_log_id", null: false
+    t.bigint "user_id"
+    t.float "miles"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_log_id"], name: "index_routes_on_delivery_log_id"
+    t.index ["user_id"], name: "index_routes_on_user_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -126,6 +124,15 @@ ActiveRecord::Schema.define(version: 2021_03_26_020014) do
     t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
+  create_table "stops", force: :cascade do |t|
+    t.bigint "route_id", null: false
+    t.string "patient_name"
+    t.string "patient_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["route_id"], name: "index_stops_on_route_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -140,9 +147,10 @@ ActiveRecord::Schema.define(version: 2021_03_26_020014) do
   end
 
   add_foreign_key "check_entries", "check_logs"
-  add_foreign_key "delivery_entries", "delivery_logs"
-  add_foreign_key "delivery_entries", "users"
   add_foreign_key "items", "inventories"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "routes", "delivery_logs"
+  add_foreign_key "routes", "users"
+  add_foreign_key "stops", "routes"
 end

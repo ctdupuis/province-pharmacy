@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_235708) do
+ActiveRecord::Schema.define(version: 2021_03_31_014917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_03_28_235708) do
     t.float "miles"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "edited", default: false
     t.index ["delivery_log_id"], name: "index_routes_on_delivery_log_id"
     t.index ["user_id"], name: "index_routes_on_user_id"
   end

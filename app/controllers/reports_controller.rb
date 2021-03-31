@@ -14,9 +14,10 @@ class ReportsController < ApplicationController
         case params[:type]
         when "Check"
             report = CheckLog.find(id).check_entries.map{ |e| e if e.created >= start_date && e.created <= end_date }.compact
-        when "Mileage"
+        when "Mileage", "add", "edit", "remove"
             report = DeliveryLog.find(id).routes.map{ |t| t if t.created >= start_date && t.created <= end_date }.compact
         end
+        
         if report
             render json: report
         else

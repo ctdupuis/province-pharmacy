@@ -9,20 +9,18 @@ class ReportsController < ApplicationController
         end
         
         start_date = params[:start_date].in_time_zone('Central Time (US & Canada)').to_date
-        end_date = params[:end_date].in_time_zone('Central Time (US & Canada)').to_date
+        if params[:end_date]
+            end_date = params[:end_date].in_time_zone('Central Time (US & Canada)').to_date 
+        end
 
         case params[:type]
         when "Check"
             report = CheckLog.find(id).check_entries.map{ |e| e if e.created >= start_date && e.created <= end_date }.compact
-        when "Mileage", "add", "edit", "remove"
+        when "Mileage"
             report = DeliveryLog.find(id).routes.map{ |t| t if t.created >= start_date && t.created <= end_date }.compact
         when "add", "edit", "remove"
-            report = DeliveryLog.find(id).routes.map{ |t| t if t.created >= start_date && t.created <= end_date }.compact
-            hash = {}
-            hash[:type] = params[:type]
-            report.push(hash)
+            report = DeliveryLog.find(id).routes.map{ |t| t if t.created == start_date }.compact
         end
-        binding.pry
         
         if report
             render json: report

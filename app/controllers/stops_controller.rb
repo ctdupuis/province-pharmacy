@@ -11,6 +11,7 @@ class StopsController < ApplicationController
         end
         if new_stop
             route.stops.push(new_stop)
+            route.update(miles: params[:miles], edited: true)
             render json: { status: 200, alert: "Stop added succesfully"}
         else
             render json: { status: 404, alert: "Failed to add stop"}

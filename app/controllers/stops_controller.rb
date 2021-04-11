@@ -36,6 +36,11 @@ class StopsController < ApplicationController
     def destroy
         route = Route.find(params[:route_id])
         stop = route.stops.find(params[:id])
+        stop.destroy
+        route.update(
+            miles: params[:miles],
+            edited: true
+        )
         render json: { status: 200 }
     end
 end

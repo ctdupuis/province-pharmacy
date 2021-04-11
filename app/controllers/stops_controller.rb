@@ -32,4 +32,10 @@ class StopsController < ApplicationController
             render json: { status: 404, alert: "Failed to update information"}
         end
     end
+
+    def destroy
+        route = Route.find(params[:route_id])
+        stop = route.stops.find(params[:id])
+        render json: { status: 200 }
+    end
 end

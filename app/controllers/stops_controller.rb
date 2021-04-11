@@ -18,4 +18,18 @@ class StopsController < ApplicationController
         end
     end
 
+    def update 
+        route = Route.find(params[:route_id])
+        stop = route.stops.find(params[:id])
+        stop.update(
+            patient_name: params[:patient_name],
+            patient_address: params[:patient_address]
+        )
+        route.update(miles: params[:miles], edited: true)
+        if route && stop
+            render json: { status: 200, alert: "Stop succesfully changed " }
+        else
+            render json: { status: 404, alert: "Failed to update information"}
+        end
+    end
 end

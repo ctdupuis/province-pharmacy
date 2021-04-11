@@ -17,7 +17,7 @@ class Route < ApplicationRecord
                 only: [:username, :first_name]
             },
             stops: {
-                only: [:patient_name, :patient_address]
+                only: [:id, :patient_name, :patient_address]
             }
         }, methods: [:date_format])
     end

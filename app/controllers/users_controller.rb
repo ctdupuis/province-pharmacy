@@ -23,8 +23,8 @@ class UsersController < ApplicationController
           }
       else
           render json: { 
-            logged_in: false, 
-            error: "Invalid username/password combination"
+            logged_in: false,
+            alert: { type: "failure", text: "Invalid username or password"}
           }
       end
   end
@@ -84,8 +84,8 @@ class UsersController < ApplicationController
     }
   end
 
-  def destroy
-    User.find(params[:id]).destroy
+  def deactivate
+    deactivated_user = User.find(params[:id]).update_attribute(:active, false)
     render json: { status: 200 }
   end
 

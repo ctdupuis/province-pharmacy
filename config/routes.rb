@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post "/", to: "users#login"
   post "/update", to: "users#update"
   post "/users", to: "users#create"
-  post "/users/:id/delete", to: "users#destroy"
+  post "/users/:id/delete", to: "users#deactivate"
   get '/logout', to: 'users#logout'
   get '/logged_in', to: 'users#logged_in'
   get '/contacts', to: 'users#contact_list'

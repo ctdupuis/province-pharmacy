@@ -63,9 +63,9 @@ class UsersController < ApplicationController
   def contact_list
     user = User.find(session[:user_id])
     if @current_user.demo
-      contact_list = User.demo_accounts
+      contact_list = User.demo_accounts.map{ |a| a if a.active }
     else
-      contact_list = User.real_accounts
+      contact_list = User.real_accounts.map{ |a| a if a.active }
     end
     render json: contact_list
   end

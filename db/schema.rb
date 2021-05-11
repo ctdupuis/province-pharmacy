@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_014917) do
+ActiveRecord::Schema.define(version: 2021_05_11_021722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_014917) do
     t.string "phone"
     t.string "email"
     t.boolean "demo"
+    t.boolean "active", default: true
   end
 
   add_foreign_key "check_entries", "check_logs"

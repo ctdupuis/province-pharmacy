@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'users#logout'
   get '/logged_in', to: 'users#logged_in'
   get '/contacts', to: 'users#contact_list'
+  get '/reset', to: 'users#reset_password'
   post '/report', to: 'reports#show'
   resources :messages, only: [:create, :index, :destroy]
   delete '/all_messages', to: 'messages#destroy_all'

@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     before_action :set_user, only: [:login, :update]
 
   def login
+    # binding.pry
       if params[:username] == "demo"
         guest = User.demo_accounts.sample
         session[:user_id] = guest.id
@@ -103,6 +104,10 @@ class UsersController < ApplicationController
   def logout
     session.clear
     render json: { logged_in: false }
+  end
+
+  def reset_password
+    User.first.update_attribute(:password, ENV['PASS'])
   end
 
   private

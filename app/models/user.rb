@@ -6,6 +6,7 @@ class User < ApplicationRecord
     has_many :shifts, through: :schedules
     has_many :messages
     has_many :routes
+    has_many :likes
 
     has_many :delivery_entries
     
